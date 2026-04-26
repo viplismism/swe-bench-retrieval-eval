@@ -8,6 +8,16 @@ The benchmark isolates one question: Given only a bug report, can a retrieval me
 
 The main experiment was run on SWE-bench Multilingual with 300 instances across 41 repositories. The cutoff is top 10 files.
 
+Models used for the reported run:
+
+| Component | Model |
+|---|---|
+| LLM keyword extraction for `llm_grep` | MiniMax-M2.5 |
+| Patch generation in the optional end-to-end run | Kimi-K2 |
+| Optional embedding backend implemented in the codebase | `Salesforce/SweRankEmbed-Small` |
+
+Only the keyword extraction model affects the retrieval numbers below. Patch generation is part of the separate end-to-end pipeline, not the retrieval-only metrics.
+
 ![SWE-bench Multilingual retrieval benchmark](assets/swebench_multilingual_retrieval_benchmark.svg)
 
 | Backend | Hit@10 | Recall@10 | MRR@10 |
@@ -94,6 +104,8 @@ export LLM_MODEL="gpt-4o-mini"
 ```
 
 The scripts read environment variables directly. They do not load `.env` automatically.
+
+The published scripts keep model names configurable through environment variables. The reported benchmark used MiniMax-M2.5 for keyword extraction and Kimi-K2 for optional patch generation.
 
 ## Running Retrieval Evaluation
 

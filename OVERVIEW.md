@@ -36,6 +36,18 @@ For each instance:
 
 The retrieval benchmark does not inspect files after ranking, revise queries, run tests, or use an agent loop.
 
+## Models Used In Reported Runs
+
+The public scripts are model-configurable through environment variables, but the reported benchmark used the following models:
+
+| Component | Model | Used For |
+|---|---|---|
+| Keyword extraction | MiniMax-M2.5 | Extracting precise identifiers for `llm_grep` and `llm_grep_bm25`. |
+| Patch generation | Kimi-K2 | Generating unified diffs in `run_e2e_eval.py`. |
+| Embedding retrieval implementation | `Salesforce/SweRankEmbed-Small` | Optional issue-to-code embedding backend. |
+
+The retrieval-only numbers in the README depend on MiniMax-M2.5 for the LLM-assisted backends. Kimi-K2 is relevant only to the optional end-to-end patch-generation pipeline.
+
 ## Backends
 
 ### `grep`

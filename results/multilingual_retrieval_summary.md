@@ -5,6 +5,13 @@ Instances: 300
 Repositories: 41  
 Cutoff: top 10 files
 
+Models:
+
+| Component | Model |
+|---|---|
+| LLM keyword extraction | MiniMax-M2.5 |
+| Optional patch generation | Kimi-K2 |
+
 | Backend | Hit@10 | Recall@10 | MRR@10 |
 |---|---:|---:|---:|
 | grep | 0.500 | 0.400 | 0.304 |

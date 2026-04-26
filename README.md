@@ -2,11 +2,7 @@
 
 This repository contains a small evaluation framework for zero-shot file retrieval on SWE-bench style bug-fixing tasks.
 
-The benchmark isolates one question:
-
-```text
-Given only a bug report, can a retrieval method rank the files that need to be changed?
-```
+The benchmark isolates one question: Given only a bug report, can a retrieval method rank the files that need to be changed?
 
 The framework does not require an agent loop for the retrieval benchmark. Each backend receives the issue text and returns the top `k` candidate files from the repository checkout at the base commit. The predictions are then compared against the files modified by the ground-truth patch.
 

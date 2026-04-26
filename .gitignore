@@ -1,0 +1,27 @@
+# Local environments
+.env
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
+
+# SWE-bench cloned repositories
+swe_repos/
+swe_repos_multilingual/
+
+# Generated benchmark artifacts
+swe_results/
+swe_embeddings/
+*.log
+predictions_*.jsonl
+cleaned_predictions_*.jsonl
+
+# Local scratch
+tmp/
+scratch/

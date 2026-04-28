@@ -2,7 +2,7 @@
 """
 SWE-bench Search Eval — Single-repo code retrieval benchmark.
 
-Uses SWE-bench Verified instances as ground truth:
+Uses SWE-bench Multilingual instances as ground truth:
   - Query: the issue's problem_statement
   - Ground truth: files modified in the gold patch
   - Repo: cloned at base_commit

@@ -30,7 +30,7 @@ Only the keyword extraction model affects the retrieval numbers below. Patch gen
 
 In this run, `llm_grep` was the strongest retrieval backend. It used an LLM only to extract precise technical search strings from the bug report, then used fixed-string grep and path-aware ranking. Adding BM25 through reciprocal rank fusion slightly reduced the multilingual metrics.
 
-Additional compact result summaries are available in [`results/`](results/).
+The compact multilingual result summary is available in [`results/`](results/).
 
 ## Retrieval Backends
 
@@ -75,7 +75,6 @@ All metrics are computed at `k = 10` by default.
 ├── clean_patches.py              # Utility for cleaning generated patches
 ├── assets/                       # README figures
 ├── results/                      # Compact public result summaries
-├── swe_repos/                    # Generated local repository checkouts
 ├── swe_repos_multilingual/       # Generated local repository checkouts
 └── swe_results/                  # Generated run outputs and caches
 ```
@@ -127,15 +126,6 @@ python3 run_swebench_search_eval.py \
   --backends grep,bm25,grep_bm25,llm_grep,llm_grep_bm25
 ```
 
-Run SWE-bench Verified:
-
-```bash
-python3 run_swebench_search_eval.py \
-  --dataset verified \
-  --limit 500 \
-  --backends grep,bm25,grep_bm25,llm_grep,llm_grep_bm25
-```
-
 ## Running End-to-End Patch Generation
 
 `run_e2e_eval.py` extends the retrieval benchmark by reading the retrieved files and asking a patch model to produce a unified diff.
@@ -158,7 +148,6 @@ The script writes SWE-bench-compatible prediction JSONL files. Running the offic
 The first run downloads SWE-bench instances and clones repositories at their base commits. This can consume significant disk space. Generated data is written under:
 
 ```text
-swe_repos/
 swe_repos_multilingual/
 swe_results/
 swe_embeddings/

@@ -6,11 +6,10 @@ The framework also includes an optional end-to-end script that takes retrieved f
 
 ## Datasets
 
-Two dataset configurations are supported:
+The reported benchmark uses SWE-bench Multilingual:
 
 | Dataset | Hugging Face name | Split | Local repo cache |
 |---|---|---|---|
-| SWE-bench Verified | `princeton-nlp/SWE-bench_Verified` | `test` | `swe_repos/` |
 | SWE-bench Multilingual | `SWE-bench/SWE-bench_Multilingual` | `test` | `swe_repos_multilingual/` |
 
 Each instance contains:
@@ -106,10 +105,6 @@ Generated artifacts are written under `swe_results/`:
 
 ```text
 swe_results/
-├── verified/
-│   ├── keyword_cache/
-│   ├── bm25_cache/
-│   └── run_<timestamp>/
 └── multilingual/
     ├── keyword_cache/
     ├── bm25_cache/
@@ -120,7 +115,6 @@ swe_results/
 Repository checkouts are stored under:
 
 ```text
-swe_repos/
 swe_repos_multilingual/
 ```
 

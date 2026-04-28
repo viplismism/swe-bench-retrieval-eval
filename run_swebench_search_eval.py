@@ -42,7 +42,7 @@ from typing import Any, List, Dict, Optional, Tuple
 # ============================================================================
 
 EVAL_DIR    = Path(__file__).parent
-REPOS_DIR   = EVAL_DIR / "swe_repos"     # Default; overridden per dataset in main()
+REPOS_DIR   = EVAL_DIR / "swe_repos_multilingual"
 RESULTS_DIR = EVAL_DIR / "swe_results"
 EMBEDDINGS_DIR = EVAL_DIR / "swe_embeddings"  # Cached embeddings
 
@@ -308,18 +308,8 @@ def _save_embedding(cache_path: Path, embedding: "np.ndarray"):
 # SWE-bench data loading
 # ============================================================================
 
-DATASET_CACHE_FILE = RESULTS_DIR / "swebench_verified.json"
-
 # Supported datasets
 DATASET_CONFIGS = {
-    "verified": {
-        "hf_name": "princeton-nlp/SWE-bench_Verified",
-        "split": "test",
-        "cache_file": RESULTS_DIR / "verified" / "swebench_verified.json",
-        "label": "SWE-bench Verified",
-        "results_subdir": "verified",
-        "repos_dir": EVAL_DIR / "swe_repos",
-    },
     "multilingual": {
         "hf_name": "SWE-bench/SWE-bench_Multilingual",
         "split": "test",
@@ -332,12 +322,12 @@ DATASET_CONFIGS = {
 
 
 def load_swebench_instances(limit: int = DEFAULT_LIMIT,
-                            dataset: str = "verified") -> List[Dict]:
+                            dataset: str = "multilingual") -> List[Dict]:
     """Load SWE-bench instances.
 
     Args:
         limit: max instances to return (0 = all)
-        dataset: 'verified' or 'multilingual'
+        dataset: 'multilingual'
 
     First run: fetches from HuggingFace and saves a local JSON cache.
     Subsequent runs: loads from the local cache instantly (no network).
@@ -704,7 +694,7 @@ def _get_bm25_index(repo_dir: Path):
       3. Build from scratch, then write both caches
 
     The repo_dir path already encodes the 12-char commit prefix
-    (swe_repos/<repo>/<commit12>/), so no git subprocess is needed.
+    (swe_repos_multilingual/<repo>/<commit12>/), so no git subprocess is needed.
     At most one entry is kept in memory to bound RAM usage.
     """
     import pickle
@@ -1428,14 +1418,14 @@ def main():
                         help=f"Comma-separated backends (default: all). "
                              f"Options: {','.join(ALL_BACKENDS)}")
     parser.add_argument("--repos", type=str, default=None,
-                        help="Comma-separated repo filter (e.g. 'pallets/flask,psf/requests')")
+                        help="Comma-separated repo filter (e.g. 'apache/druid,tokio-rs/tokio')")
     parser.add_argument("--resume", type=str, default=None,
                         help="Path to file with completed instance IDs (one per line) to skip")
     parser.add_argument("--resume-offset", type=int, default=0,
                         help="Number of already-completed instances (for display numbering)")
-    parser.add_argument("--dataset", type=str, default="verified",
+    parser.add_argument("--dataset", type=str, default="multilingual",
                         choices=list(DATASET_CONFIGS.keys()),
-                        help="Dataset to evaluate (default: verified)")
+                        help="Dataset to evaluate (default: multilingual)")
     parser.add_argument("--no-cache", action="store_true",
                         help="Skip LLM keyword cache, force fresh API calls")
     args = parser.parse_args()

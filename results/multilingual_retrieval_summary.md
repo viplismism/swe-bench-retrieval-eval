@@ -3,7 +3,9 @@
 Dataset: SWE-bench Multilingual  
 Instances: 300  
 Repositories: 41  
-Cutoff: top 10 files
+Cutoff: top 10 files  
+Source run: `e2e_run_20260405_162252`  
+Run date: 2026-04-05 to 2026-04-06
 
 Models:
 

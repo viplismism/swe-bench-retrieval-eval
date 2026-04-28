@@ -6,7 +6,7 @@ The benchmark isolates one question: Given only a bug report, can a retrieval me
 
 ## Results
 
-The main experiment was run on SWE-bench Multilingual with 300 instances across 41 repositories. The cutoff is top 10 files.
+The main experiment was run on SWE-bench Multilingual with 300 instances across 41 repositories. The cutoff is top 10 files. The reported table comes from run `e2e_run_20260405_162252`, executed from 2026-04-05 to 2026-04-06.
 
 Models used for the reported run:
 
